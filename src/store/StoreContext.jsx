@@ -18,7 +18,7 @@ export function StoreProvider({ children }) {
   }, [])
 
   const [ui, setUi] = useState({
-    page: 'sheet',
+    page: 'forms', // app opens on the Forms list
     activeFormId: 'form_leads',
     drawer: null, // recordId | 'new' | null
     newRow: false, // true while an inline new-record row is open in the grid
