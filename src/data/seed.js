@@ -42,6 +42,7 @@ const field = (id, label, type, teamId, extra = {}) => ({
   required: false,
   defaultValue: '',
   options: [],
+  description: '',
   ...extra,
   optionColors: optionColorsFor(extra.options || []),
 })
@@ -59,11 +60,11 @@ const leadForm = {
     field(F.email, 'Contact Email', 'email', 'sales', { required: true }),
     field(F.priority, 'Priority', 'dropdown', 'sales', { options: [...PRIORITY_OPTIONS], defaultValue: 'Medium' }),
     field(F.due, 'Due Date', 'date', 'sales'),
-    field(F.tech, 'Technical Assessment', 'longtext', 'it', { required: true }),
-    field(F.itStatus, 'IT Status', 'dropdown', 'it', { required: true, options: [...STATUS_OPTIONS], defaultValue: 'Not Started' }),
+    field(F.tech, 'Technical Assessment', 'longtext', 'it', { required: true, description: "IT's notes on the lead's infrastructure, SSO and data-residency needs, written during IT Review." }),
+    field(F.itStatus, 'IT Status', 'dropdown', 'it', { required: true, options: [...STATUS_OPTIONS], defaultValue: 'Not Started', description: 'Progress of the IT security and infrastructure review. Complete means IT has signed off and the lead can move to Development.' }),
     field(F.devNotes, 'Development Notes', 'longtext', 'dev'),
     field(F.impl, 'Implementation Status', 'dropdown', 'dev', { required: true, options: [...STATUS_OPTIONS], defaultValue: 'Not Started' }),
-    field(F.approval, 'Final Approval', 'dropdown', 'mgmt', { options: ['Pending', 'Approved', 'Rejected'], defaultValue: 'Pending' }),
+    field(F.approval, 'Final Approval', 'dropdown', 'mgmt', { options: ['Pending', 'Approved', 'Rejected'], defaultValue: 'Pending', description: "Management's go/no-go decision on the deal. Set automatically when a manager approves or rejects the record." }),
   ],
   stages: [
     { id: 'st_sales', name: 'Sales', teamId: 'sales' },

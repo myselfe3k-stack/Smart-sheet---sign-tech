@@ -74,6 +74,7 @@ const diffForm = (prev, next) => {
     if (p.teamId !== f.teamId) msgs.push(`Reassigned "${f.label}" to another team`)
     if (JSON.stringify(p.options) !== JSON.stringify(f.options)) msgs.push(`Updated options for "${f.label}"`)
     if (p.defaultValue !== f.defaultValue) msgs.push(`Changed default value of "${f.label}"`)
+    if ((p.description || '') !== (f.description || '')) msgs.push(`Updated AI description of "${f.label}"`)
   }
   for (const f of prev.fields) if (!nextIds.has(f.id)) msgs.push(`Removed field "${f.label}"`)
   if (prev.fields.map((f) => f.id).join() !== next.fields.filter((f) => prevById[f.id]).map((f) => f.id).join() && msgs.length === 0)

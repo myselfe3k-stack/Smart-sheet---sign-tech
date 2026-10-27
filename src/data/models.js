@@ -5,7 +5,7 @@
 // Form        { id, name, description, status: 'draft'|'published', fields: Field[],
 //               stages: Stage[], colorFieldId|null, defaultColor, audit: AuditEntry[], createdAt, updatedAt }
 //               colorFieldId names the one dropdown field whose option colors paint whole rows.
-// Field       { id, label, type, required, defaultValue, options: string[], optionColors: { [option]: hex },
+// Field       { id, label, type, required, defaultValue, description, options: string[], optionColors: { [option]: hex },
 //               teamId|null }
 // Stage       { id, name, teamId }
 // Record      { id, formId, values: { [fieldId]: any }, stageIndex, workflowStatus: 'active'|'approved'|'rejected',

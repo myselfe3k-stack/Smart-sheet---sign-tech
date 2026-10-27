@@ -168,7 +168,7 @@ export default function RecordGrid({ ctx, form, groups, columns, sort, onSort, o
             const active = sort?.fieldId === c.id
             return (
               <th key={c.id} className="border-b border-r border-gray-200 bg-gray-50 px-3 py-0 last:border-r-0">
-                <button onClick={() => onSort(c.id)} className="flex w-full items-center gap-1 py-2.5 text-left uppercase tracking-wide hover:text-gray-800">
+                <button onClick={() => onSort(c.id)} title={c.description || undefined} className="flex w-full items-center gap-1 py-2.5 text-left uppercase tracking-wide hover:text-gray-800">
                   <span className="whitespace-nowrap">{c.label}</span>
                   {c.required && <span className="text-red-400">*</span>}
                   {c.locked && <Lock size={11} className="text-gray-400" />}

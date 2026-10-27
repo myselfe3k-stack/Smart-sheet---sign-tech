@@ -11,7 +11,13 @@ export function buildSheetContext(form, records, ctx, user) {
       name: form.name,
       description: form.description,
       stages: form.stages.map((s) => ({ name: s.name, team: team(s.teamId) })),
-      fields: form.fields.map((f) => ({ label: f.label, type: f.type, team: team(f.teamId), required: f.required })),
+      fields: form.fields.map((f) => ({
+        label: f.label,
+        type: f.type,
+        team: team(f.teamId),
+        required: f.required,
+        ...(f.description ? { description: f.description } : {}),
+      })),
     },
     records: records.map((r) => ({
       title: recordTitle(form, r),

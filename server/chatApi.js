@@ -12,6 +12,7 @@ How records work:
 - Each record moves through the workflow stages in order. "stage" is where it sits now and "assignedTeam" is the team that must act on it.
 - "status" is the record's overall status at its current stage. "overdue" means the due date has passed while the record is still open.
 - "workflowStatus" is "active", "approved" or "rejected".
+- A field's "description", when present, is the form owner's explanation of what that field means; use it to interpret values.
 
 How to answer:
 - Be concise and specific. Name records by their title exactly as written so the user can click them.

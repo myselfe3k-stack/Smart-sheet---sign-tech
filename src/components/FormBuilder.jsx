@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowDown, ArrowUp, ChevronDown, Eye, GripVertical, Hammer, Lock, Palette, Plus, Send, Trash2, X } from 'lucide-react'
+import { ArrowDown, ArrowUp, ChevronDown, Eye, GripVertical, Hammer, Lock, MessageSquareText, Palette, Plus, Send, Trash2, X } from 'lucide-react'
 import { useStore } from '../store/StoreContext'
 import { FIELD_TYPES, defaultOptionsFor, optionColorsFor, suggestOptionColor, typeHasOptions } from '../data/models'
 import { isAdmin } from '../lib/permissions'
@@ -15,6 +15,7 @@ const newField = (type = 'text', teamId = '') => ({
   options: defaultOptionsFor(type),
   optionColors: optionColorsFor(defaultOptionsFor(type)),
   teamId,
+  description: '', // optional note telling the AI what this field means
 })
 
 const blankForm = (teams) => ({
@@ -102,6 +103,14 @@ function FieldCard({ field, index, total, teams, users, onChange, onRemove, onMo
           <button disabled={index === total - 1} onClick={() => onMove(1)} className="rounded p-1 text-gray-400 hover:text-gray-700 disabled:opacity-30" aria-label="Move down">
             <ArrowDown size={14} />
           </button>
+          <button
+            onClick={() => setOpen(true)}
+            title={field.description ? `AI description: ${field.description}` : 'Add a description for the AI (optional)'}
+            aria-label="Field description for AI"
+            className={cx('rounded p-1 transition', field.description ? 'text-brand-700 hover:text-brand-900' : 'text-gray-400 hover:text-gray-700')}
+          >
+            <MessageSquareText size={14} />
+          </button>
           <button onClick={() => setOpen((o) => !o)} className="rounded p-1 text-gray-400 hover:text-gray-700" aria-label="Field settings">
             <ChevronDown size={15} className={cx('transition', open && 'rotate-180')} />
           </button>
@@ -112,6 +121,18 @@ function FieldCard({ field, index, total, teams, users, onChange, onRemove, onMo
       </div>
       {open && (
         <div className="grid gap-3 border-t border-gray-100 bg-gray-50/60 p-3 sm:grid-cols-2">
+          <div className="sm:col-span-2">
+            <label className="mb-1 flex items-center gap-1.5 text-xs font-medium text-gray-600">
+              <MessageSquareText size={12} /> Description for AI <span className="font-normal text-gray-400">(optional)</span>
+            </label>
+            <textarea
+              rows={2}
+              className={cx(inputCls, '!py-1.5 text-[13px]')}
+              placeholder="What does this field mean and how is it used? e.g. “Set by IT once the security review is done; Complete means ready to build.”"
+              value={field.description || ''}
+              onChange={(e) => onChange({ description: e.target.value })}
+            />
+          </div>
           <div>
             <label className="mb-1 block text-xs font-medium text-gray-600">Default value</label>
             <FieldInput field={{ ...field, label: 'Checked by default' }} value={field.defaultValue} users={users} onChange={(defaultValue) => onChange({ defaultValue })} />
