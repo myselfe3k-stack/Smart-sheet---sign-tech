@@ -1,0 +1,105 @@
+@import 'tailwindcss';
+
+/* Blue palette: #E3F2FD → #90CAF9 → #2196F3 → #0D47A1, filled in to a full 50–900 scale.
+   Change the brand scale here to retheme the whole app.
+   The indigo and violet scales are remapped so every accent in the app follows this palette. */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-app: #f5f9fd;
+  --color-brand-50: #f1f8fe;
+  --color-brand-100: #e3f2fd;
+  --color-brand-200: #bbdefb;
+  --color-brand-300: #90caf9;
+  --color-brand-400: #64b5f6;
+  --color-brand-500: #2196f3;
+  --color-brand-600: #1e88e5;
+  --color-brand-700: #1565c0;
+  --color-brand-800: #0d47a1;
+  --color-brand-900: #0a2f6b;
+
+  --color-indigo-50: var(--color-brand-50);
+  --color-indigo-100: var(--color-brand-100);
+  --color-indigo-200: var(--color-brand-200);
+  --color-indigo-300: var(--color-brand-300);
+  --color-indigo-400: var(--color-brand-400);
+  --color-indigo-500: var(--color-brand-600);
+  --color-indigo-600: var(--color-brand-700);
+  --color-indigo-700: var(--color-brand-700);
+  --color-indigo-800: var(--color-brand-800);
+  --color-indigo-900: var(--color-brand-900);
+
+  --color-violet-50: var(--color-brand-50);
+  --color-violet-100: var(--color-brand-100);
+  --color-violet-200: var(--color-brand-200);
+  --color-violet-500: var(--color-brand-600);
+  --color-violet-600: var(--color-brand-700);
+  --color-violet-700: var(--color-brand-700);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-app);
+  color: #1f2937;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.bg-sidebar {
+  background: linear-gradient(180deg, #1e88e5 0%, #1565c0 100%);
+}
+
+.bg-ai {
+  background: linear-gradient(135deg, #2196f3 0%, #0d47a1 100%);
+}
+
+.text-ai {
+  background: linear-gradient(135deg, #2196f3, #0d47a1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(24px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slide-in-left {
+  from { transform: translateX(-16px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes rise {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.anim-drawer { animation: slide-in-right 0.22s ease-out; }
+.anim-panel { animation: slide-in-left 0.2s ease-out; }
+.anim-rise { animation: rise 0.22s ease-out; }
+.anim-fade { animation: fade 0.18s ease-out; }
+
+.loading-text {
+  background: linear-gradient(90deg, #64b5f6 0%, #0d47a1 45%, #2196f3 60%, #64b5f6 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 1.6s linear infinite;
+}
+
+.scroll-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 8px; }
+.scroll-thin::-webkit-scrollbar-track { background: transparent; }
